@@ -22,13 +22,12 @@ class Intro extends React.Component {
 
     render () {
         return (
-            <div ref="intro" id="intro" onClick={this.onClose} className={(this.state.isShow ? "" : "hide")}>
+            <Link ref="intro" id="intro" onClick={this.onClose} className={(this.state.isShow ? "" : "hide")} to="/">
               <div className="center-verticle">
                 <img src="static/img/logo.svg" alt="Electron Sunumu"/>
                 <h1>BAŞLA</h1>
-                <Link to="/">Electron Nedir?</Link>
               </div>
-            </div>
+            </Link>
         );
     }
 }

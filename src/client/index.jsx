@@ -2,24 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
-    Route
+    Route, Link
   } from 'react-router-dom';
 import Routes from './routes';
 import Navigation from './components/Navigation';
 import Intro from './components/Intro';
-// import 'normalize.css';
 import Prism from 'prismjs';
 import '../static/style/index.scss';
 
-import createBrowserHistory from 'history/createBrowserHistory';
-const history = createBrowserHistory();
+/*import createBrowserHistory from 'history/createBrowserHistory';
+const history = createBrowserHistory();*/
 
 ReactDOM.render(
-    <Router history={history}>
+    <Router>
         <div className="container">
-            <Intro/>
+            {/* <Intro/> */}
             <div id="sideNav">
-                <div id="logo"><img src="static/img/logo.svg" alt="Electron Sunumu"/></div>
+                <div id="logo"><Link to=""><img src="static/img/logo.svg" alt="Electron Sunumu"/></Link></div>
                 <Navigation/>
             </div>
             <div id="views"><Routes /></div>
