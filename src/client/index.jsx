@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
-    Route, history
+    Route
   } from 'react-router-dom';
 import Routes from './routes';
 import Navigation from './components/Navigation';
@@ -11,8 +11,11 @@ import Intro from './components/Intro';
 import Prism from 'prismjs';
 import '../static/style/index.scss';
 
+import createBrowserHistory from 'history/createBrowserHistory';
+const history = createBrowserHistory();
+
 ReactDOM.render(
-    <Router>
+    <Router history={history}>
         <div className="container">
             <Intro/>
             <div id="sideNav">
