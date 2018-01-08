@@ -5,13 +5,13 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var loaders = require('./webpack.loaders');
 
 var BUILD_DIR = path.resolve(__dirname, 'dist-web');
-var APP_DIR = path.resolve(__dirname, 'src/app');
+var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'babel-polyfill',
-        APP_DIR + '/index.jsx'
+        APP_DIR + '/client/index.jsx'
     ],
     output: {
         path: BUILD_DIR,
@@ -22,8 +22,8 @@ var config = {
         extensions: ['.js', '.jsx', '.json']
     },
     devServer: {
-        contentBase: BUILD_DIR,
-        //inline: true,
+        //contentBase: BUILD_DIR,
+        inline: true,
         compress: true,
         port: 9000,
         open: false
@@ -36,7 +36,7 @@ var config = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            template: APP_DIR + '/index.html',
+            template: APP_DIR + '/client/index.html',
             filename: 'index.html',
             inject: true
         }),

@@ -8,7 +8,7 @@ const {
 const path = require('path');
 const url = require('url');
 
-require('electron-reload')(__dirname);
+//require('electron-reload')(__dirname);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -31,7 +31,7 @@ function createWindow () {
   // and load the index.html of the app.
   // win.loadURL('http://localhost:9000/');
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'dist-web/index.html'),
+    pathname: path.join(__dirname, '../dist-web/index.html'),
     protocol: 'file:',
     slashes: true
   }));

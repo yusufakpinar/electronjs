@@ -12,7 +12,8 @@
     "icon": "src/img/icon.icns"
   },
   "scripts": {
-    "start": "npm run build:web && electron .",
+    "start": "npm run build:web && electron src/main.js",
+    "dev": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
     "electron": "electron .",
     "web": "webpack-dev-server",
     "build:electron": "rm -rf release-builds && npm run package-mac",
@@ -34,6 +35,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.5.1",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.8",
     "electron": "^1.7.9",
@@ -44,9 +46,7 @@
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
-    "npm-run-all": "^4.1.2",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^4.0.8",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
@@ -56,11 +56,14 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "fs": "0.0.1-security",
     "normalize.css": "^7.0.0",
     "prismjs": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yusufakpinar/electronjs.git"
   }
 }
