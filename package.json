@@ -2,7 +2,7 @@
   "name": "electron-sunum",
   "version": "1.0.0",
   "description": "Electron ile uygulama geliştirme",
-  "main": "main.js",
+  "main": "src/main.js",
   "build": {
     "appId": "$npm_package_name",
     "files": [

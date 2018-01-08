@@ -5,6 +5,31 @@ body{
     font-size: 1rem;
 }
 
+/*** Intro ***/
+#intro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #32babc;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+
+    .center-verticle{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -46px 0 0 -125px;
+    }
+    img{width:250px;}
+    h1{
+        margin: 10px;
+        font-weight: 600;
+    }
+}
+
 /*** Logo ***/
 #logo{
     padding:15px 20px 15px 15px;

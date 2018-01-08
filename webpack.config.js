@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var loaders = require('./webpack.loaders');
 
-var BUILD_DIR = path.resolve(__dirname, 'dist-web');
+var BUILD_DIR = path.resolve(__dirname, 'dist');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
@@ -16,14 +16,16 @@ var config = {
     output: {
         path: BUILD_DIR,
         publicPath: '',
-        filename: 'bundle.js'
+        filename: 'bundle.js?[hash]'
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json']
     },
     devServer: {
-        //contentBase: BUILD_DIR,
-        inline: true,
+        historyApiFallback: true,
+        contentBase: BUILD_DIR,
+        publicPath: '/',
+        // inline: true,
         compress: true,
         port: 9000,
         open: false
