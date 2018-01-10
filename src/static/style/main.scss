@@ -17,6 +17,10 @@ body{
     color: #fff;
     text-align: center;
 
+    &.animated{
+        z-index: -1;
+    }
+
     .center-verticle{
         position: absolute;
         left: 50%;
@@ -79,6 +83,13 @@ body{
         p{
             font-size: 1.2rem;
             line-height: 1.5;
+
+            &.note{
+                background-color: #dadada;
+                padding: 10px;
+                border-radius: 4px;
+                font-size: 1rem;
+            }
         }
     }
 }

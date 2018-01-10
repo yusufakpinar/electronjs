@@ -23,7 +23,8 @@ module.exports = [
   {
       test: /\.(woff|woff2)$/,
       exclude: /(node_modules|bower_components)/,
-      loader: "file-loader?prefix=font/&limit=5000"
+      loader: "file-loader?prefix=font/&limit=5000",
+      options: {name:"static/fonts/[name].[ext]"}
   },
   {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,

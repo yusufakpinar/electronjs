@@ -4,10 +4,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var loaders = require('./webpack.loaders');
 
-var BUILD_DIR = path.resolve(__dirname, 'dist');
+var BUILD_DIR = path.resolve(__dirname, 'out');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
+    target: "electron",
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'babel-polyfill',

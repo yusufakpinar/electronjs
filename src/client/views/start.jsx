@@ -2,7 +2,7 @@ import React from 'react';
 import Title from '../components/Title';
 import Prism from 'prismjs';
 
-let code1,code2,code3,html,json,js;
+let code1,code2,code3,code4,text,json,js,html;
 
 class Start extends React.Component {
     constructor(props){
@@ -14,13 +14,15 @@ class Start extends React.Component {
                 "├── package.json\n"+
                 "├── main.js\n"+
                 "└── index.html\n";
-        html = Prism.highlight(code1, Prism.languages.html);
+        text = Prism.highlight(code1, Prism.languages.html);
+
         code2 = '{\n'+
                     '   "name"    : "your-app",\n'+
                     '   "version" : "0.1.0",\n'+
                     '   "main"    : "main.js"\n'+
                 '}';
         json = Prism.highlight(code2, Prism.languages.javascript);
+
         code3 = `const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
@@ -78,6 +80,21 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.`;
         js = Prism.highlight(code3, Prism.languages.javascript);
 
+        code4 = `<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        We are using node <script>document.write(process.versions.node)</script>,
+        Chrome <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>.
+    </body>
+</html>`;
+        html = Prism.highlight(code4, Prism.languages.html);
+
     }
 
     render () {
@@ -87,7 +104,7 @@ app.on('activate', () => {
                 <p>Genellikle, bir Electron uygulaması şöyle yapılandırılır:</p>
                 
                 <pre className="language-html">
-                    <code className="language-html" dangerouslySetInnerHTML={{__html: html}}></code>
+                    <code className="language-html" dangerouslySetInnerHTML={{__html: text}}></code>
                 </pre>
 
                 <h3>package.json</h3>
@@ -99,6 +116,13 @@ app.on('activate', () => {
                 <pre className="language-javascript">
                     <code className="language-javascript" dangerouslySetInnerHTML={{__html: js}}></code>
                 </pre>
+
+                <h3>index.html</h3>
+                <pre className="language-html">
+                    <code className="language-html" dangerouslySetInnerHTML={{__html: html}}></code>
+                </pre>
+
+                <p className="note"><a href="https://github.com/electron/electron-quick-start" target="_blank">https://github.com/electron/electron-quick-start</a></p>
             </React.Fragment>
         );
     }

@@ -3,6 +3,8 @@ build/app.js
 build/style.css
 dist
 dist-web
+out
+out-pack
 
 # Logs
 logs

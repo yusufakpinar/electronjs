@@ -12,14 +12,13 @@
     "icon": "src/img/icon.icns"
   },
   "scripts": {
-    "start": "npm run build:web && electron src/main.js",
-    "dev": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
+    "start": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
     "electron": "electron .",
     "web": "webpack-dev-server",
-    "build:electron": "rm -rf release-builds && npm run package-mac",
+    "build:electron": "rm -rf out-pack && npm run package-mac",
     "build:web": "webpack --config webpack.config.js --watch",
     "test": "babel-node test.js",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/img/icon.icns --prune=true --out=dist-electron --asar"
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/img/icon.icns --prune=true --out=out-pack --asar"
   },
   "keywords": [
     "electron",
@@ -38,6 +37,7 @@
     "concurrently": "^3.5.1",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.8",
+    "devtron": "^1.4.0",
     "electron": "^1.7.9",
     "electron-devtools-installer": "^2.2.3",
     "electron-hot-loader": "^0.8.0",

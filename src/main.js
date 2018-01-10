@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');  
+const { app, BrowserWindow, ipcMain, Menu, globalShortcut } = require('electron');  
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 const path = require('path');
 const url = require('url');
@@ -10,30 +10,65 @@ require('electron-reload')(__dirname);
 let mainWindow;
 
 //const isDevMode = process.execPath.match(/[\\/]electron/);
-
 //if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 
-const createWindow = async () => {
+const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     title: "Electron Sunum",
+    // titleBarStyle: 'hidden',
     width: 800,
-    height: 600
+    height: 600,
+    show:false
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
-  /*mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '../dist-web/index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));*/
+  mainWindow.loadURL(`file://${__dirname}/../out/index.html`);
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  });
+
+  // Child Window
+  ipcMain.on('childOpen', (event, arg) => {
+    console.log(arg)  // prints "ping"   
+    let childWin = new BrowserWindow({parent: mainWindow, width: 600, height: 400, show:false});
+    childWin.loadURL('https://github.com'); 
+    childWin.show();
+  });
+  
 
   // Open the DevTools.
   //if (isDevMode) {
-    await installExtension(REACT_DEVELOPER_TOOLS);
+    installExtension(REACT_DEVELOPER_TOOLS);
+    require('devtron').install();
     mainWindow.webContents.openDevTools();
   //}
+
+  // Dock Menu
+  const dockMenu = Menu.buildFromTemplate([
+    {label: 'Buraya basma :/', click () { console.log('New Window') }},
+    {label: 'New Window with Settings',
+      submenu: [
+        {label: 'Basic'},
+        {label: 'Pro'}
+      ]
+    },
+    {label: 'New Command...'}
+  ]);
+  app.dock.setMenu(dockMenu);
+
+  // GlobalShortcuts
+  const ret = globalShortcut.register('Command+Enter', () => {
+    console.log('Enter is pressed');
+    mainWindow.webContents.send('start', true);
+  })
+
+  if (!ret) {
+    console.log('registration failed')
+  }
+
+  // Check whether a shortcut is registered.
+  globalShortcut.isRegistered('Enter');
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -68,3 +103,10 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+app.on('will-quit', () => {
+  // Unregister a shortcut.
+  globalShortcut.unregister('Command+Enter')
+
+  // Unregister all shortcuts.
+  globalShortcut.unregisterAll()
+})

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {ipcRenderer} from 'electron';
 
 class Intro extends React.Component {
     constructor(props){
@@ -9,6 +10,14 @@ class Intro extends React.Component {
       };
 
       this.onClose = this.onClose.bind(this);
+    }
+
+    componentDidMount(){
+      ipcRenderer.on('start', (event, arg) => {
+        console.log(this.refs.intro.context.router.history);
+        this.refs.intro.context.router.history.push('/');
+        this.onClose();
+      })
     }
 
     onClose(){
@@ -22,7 +31,7 @@ class Intro extends React.Component {
 
     render () {
         return (
-            <Link ref="intro" id="intro" onClick={this.onClose} className={(this.state.isShow ? "" : "hide")} to="/">
+            <Link ref="intro" id="intro" onClick={this.onClose} className={(this.state.isShow ? "" : "animated fadeOut")} to="/">
               <div className="center-verticle">
                 <img src="static/img/logo.svg" alt="Electron Sunumu"/>
                 <h1>BAŞLA</h1>
