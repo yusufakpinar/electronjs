@@ -37,7 +37,7 @@ ipcRenderer.send('asynchronous-message', 'ping')`;
         return (
             <React.Fragment>
                 <Title title="IPC (Inter-Process Communication)"/>
-                <p>Elektron, process ve renderer işlemleri arasındaki seri hale getirilmiş JSON iletileri göndermek için IPC kullanır.</p>
+                <p>Electron, process ve renderer işlemleri arasındaki seri hale getirilmiş JSON iletileri göndermek için IPC kullanır.</p>
                 
                 <pre className="language-javascript">
                     <code className="language-javascript" dangerouslySetInnerHTML={{__html: js}}></code>

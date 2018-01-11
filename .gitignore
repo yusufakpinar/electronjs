@@ -5,6 +5,7 @@ dist
 dist-web
 out
 out-pack
+out-release
 
 # Logs
 logs

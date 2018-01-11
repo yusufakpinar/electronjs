@@ -5,6 +5,34 @@ const url = require('url');
 require('electron-reload')(__dirname);
 //import { enableLiveReload } from 'electron-compile';
 
+const template = [
+  {
+    label: 'Edit',
+    submenu: [
+      {
+        label: 'Yusuf Baba',
+        click () { require('electron').shell.openExternal('https://electron.atom.io') }
+      }
+    ]
+  },
+  {
+    role: 'window',
+    submenu: [
+      {role: 'minimize'},
+      {role: 'close'}
+    ]
+  },
+  {
+    role: 'help',
+    submenu: [
+      {
+        label: 'Learn More',
+        click () { require('electron').shell.openExternal('https://electron.atom.io') }
+      }
+    ]
+  }
+];
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -56,6 +84,10 @@ const createWindow = () => {
     {label: 'New Command...'}
   ]);
   app.dock.setMenu(dockMenu);
+
+  // Menu
+  //const menu = Menu.buildFromTemplate(template);
+  //Menu.setApplicationMenu(menu);
 
   // GlobalShortcuts
   const ret = globalShortcut.register('Command+Enter', () => {

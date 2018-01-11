@@ -16,7 +16,7 @@ const history = createBrowserHistory();*/
 ReactDOM.render(
     <Router>
         <div className="container">
-            {/* <Intro/> */}
+            <Intro/>
             <div id="sideNav">
                 <div id="logo"><Link to=""><img src="static/img/logo.svg" alt="Electron Sunumu"/></Link></div>
                 <Navigation/>

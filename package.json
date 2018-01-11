@@ -13,12 +13,11 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
-    "electron": "electron .",
     "web": "webpack-dev-server",
-    "build:electron": "rm -rf out-pack && npm run package-mac",
     "build:web": "webpack --config webpack.config.js --watch",
-    "test": "babel-node test.js",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/img/icon.icns --prune=true --out=out-pack --asar"
+    "build:electron": "rm -rf out-pack && npm run package:mac",
+    "package:mac": "electron-packager . --overwrite=true --platform=darwin --arch=x64 --icon=src/img/icon.icns --out=out-pack --asar",
+    "release:mac": "electron-installer-dmg --out=out-release out-pack/electron-sunum-darwin-x64/electron-sunum.app electron-demo"
   },
   "keywords": [
     "electron",
@@ -41,6 +40,7 @@
     "electron": "^1.7.9",
     "electron-devtools-installer": "^2.2.3",
     "electron-hot-loader": "^0.8.0",
+    "electron-installer-dmg": "^0.2.1",
     "electron-packager": "^9.1.0",
     "electron-reload": "^1.2.2",
     "event-source-polyfill": "0.0.12",
@@ -53,8 +53,7 @@
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
-    "webpack-hot-middleware": "^2.21.0"
+    "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

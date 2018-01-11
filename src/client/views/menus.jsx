@@ -12,17 +12,36 @@ class Menus extends React.Component {
     componentWillMount(){
         code = `const {app, Menu} = require('electron')
 
-const dockMenu = Menu.buildFromTemplate([
-    {label: 'New Window', click () { console.log('New Window') }},
-    {label: 'New Window with Settings',
-    submenu: [
-        {label: 'Basic'},
-        {label: 'Pro'}
-    ]
+const template = [
+    {
+        label: 'Edit',
+        submenu: [
+            {
+                label: 'Test',
+                click () { require('electron').shell.openExternal('https://electron.atom.io') }
+            }
+        ]
     },
-    {label: 'New Command...'}
-])
-app.dock.setMenu(dockMenu)`;
+    {
+        role: 'window',
+        submenu: [
+            {role: 'minimize'},
+            {role: 'close'}
+        ]
+    },
+    {
+        role: 'help',
+        submenu: [
+            {
+                label: 'Learn More',
+                click () { require('electron').shell.openExternal('https://electron.atom.io') }
+            }
+        ]
+    }
+];
+        
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)`;
         js = Prism.highlight(code, Prism.languages.javascript);
     }
 
@@ -30,9 +49,8 @@ app.dock.setMenu(dockMenu)`;
         return (
             <React.Fragment>
                 <Title title="Menus"/>
-                <p>Farklı işletim sistemlerini masaüstünü entegre etmek için farklı özellikler sunar uygulamaları masaüstü ortamlarına dönüştürür. Örneğin, Windows'ta, uygulama kısayollarını görev çubuğunun görev listesine koyabilir ve Mac'te uygulamaları, dock menüsüne özel bir menüye yerleştirebilir.</p>
+                <p>Yerel uygulama menüleri ve bağlam menüleri oluşturmamızı sağlar.</p>
                 
-                <h3>Custom Dock Menu</h3>
                 <pre className="language-javascript">
                     <code className="language-javascript" dangerouslySetInnerHTML={{__html: js}}></code>
                 </pre>                
