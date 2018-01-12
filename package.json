@@ -7,7 +7,6 @@
     "start": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
     "web": "webpack-dev-server",
     "build:web": "webpack --config webpack.config.js --watch",
-    "build:electron": "rm -rf out-pack && npm run package:mac",
     "package:mac": "electron-packager . --overwrite=true --platform=darwin --arch=x64 --icon=src/img/icon.icns --out=out-pack --asar",
     "release:mac": "electron-installer-dmg --out=out-release out-pack/electron-sunum-darwin-x64/electron-sunum.app electron-demo"
   },

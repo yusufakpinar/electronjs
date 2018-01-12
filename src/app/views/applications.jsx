@@ -13,6 +13,7 @@ class Applications extends React.Component {
                 <ul>
                     <li>Slack</li>
                     <li>Skype</li>
+                    <li>Hyper</li>
                     <li>Vs Code</li>
                     <li>Atom</li>
                     <li>Postman</li>
