@@ -3,14 +3,6 @@
   "version": "1.0.0",
   "description": "Electron ile uygulama geliştirme",
   "main": "src/main.js",
-  "build": {
-    "appId": "$npm_package_name",
-    "files": [
-      "**/*",
-      "!releases"
-    ],
-    "icon": "src/img/icon.icns"
-  },
   "scripts": {
     "start": "concurrently --kill-others \"npm run build:web\" \"electron src/main.js\"",
     "web": "webpack-dev-server",

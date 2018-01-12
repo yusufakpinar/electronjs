@@ -1,8 +1,12 @@
-const { app, BrowserWindow, ipcMain, Menu, globalShortcut } = require('electron');  
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+const { app, BrowserWindow, ipcMain, Menu, globalShortcut, shell } = require('electron');  
+// const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 const path = require('path');
 const url = require('url');
-require('electron-reload')(__dirname);
+const isDevMode = false;
+
+if(isDevMode){
+  require('electron-reload')(__dirname);
+}
 //import { enableLiveReload } from 'electron-compile';
 
 const template = [
@@ -11,7 +15,7 @@ const template = [
     submenu: [
       {
         label: 'Yusuf Baba',
-        click () { require('electron').shell.openExternal('https://electron.atom.io') }
+        click () { shell.openExternal('https://electron.atom.io') }
       }
     ]
   },
@@ -27,7 +31,7 @@ const template = [
     submenu: [
       {
         label: 'Learn More',
-        click () { require('electron').shell.openExternal('https://electron.atom.io') }
+        click () { shell.openExternal('https://electron.atom.io') }
       }
     ]
   }
@@ -66,15 +70,15 @@ const createWindow = () => {
   
 
   // Open the DevTools.
-  //if (isDevMode) {
+  if (isDevMode) {
     installExtension(REACT_DEVELOPER_TOOLS);
     require('devtron').install();
     mainWindow.webContents.openDevTools();
-  //}
+  }
 
   // Dock Menu
   const dockMenu = Menu.buildFromTemplate([
-    {label: 'Buraya basma :/', click () { console.log('New Window') }},
+    {label: 'Buraya basma :/', click () { shell.openExternal('https://electron.atom.io') }},
     {label: 'New Window with Settings',
       submenu: [
         {label: 'Basic'},
@@ -86,8 +90,8 @@ const createWindow = () => {
   app.dock.setMenu(dockMenu);
 
   // Menu
-  //const menu = Menu.buildFromTemplate(template);
-  //Menu.setApplicationMenu(menu);
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
 
   // GlobalShortcuts
   const ret = globalShortcut.register('Command+Enter', () => {

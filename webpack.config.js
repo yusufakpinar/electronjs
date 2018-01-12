@@ -12,7 +12,7 @@ var config = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'babel-polyfill',
-        APP_DIR + '/client/index.jsx'
+        APP_DIR + '/app/index.jsx'
     ],
     output: {
         path: BUILD_DIR,
@@ -39,7 +39,7 @@ var config = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            template: APP_DIR + '/client/index.html',
+            template: APP_DIR + '/app/index.html',
             filename: 'index.html',
             inject: true
         }),

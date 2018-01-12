@@ -34,7 +34,7 @@ class Intro extends React.Component {
             <Link ref="intro" id="intro" onClick={this.onClose} className={(this.state.isShow ? "" : "animated fadeOut")} to="/">
               <div className="center-verticle">
                 <img src="static/img/logo.svg" alt="Electron Sunumu"/>
-                <h1>BAŞLA</h1>
+                <h1 className="animated bounceInUp">BAŞLA</h1>
               </div>
             </Link>
         );
