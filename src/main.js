@@ -14,7 +14,7 @@ const template = [
     label: 'Edit',
     submenu: [
       {
-        label: 'Yusuf Baba',
+        label: 'Electron Github',
         click () { shell.openExternal('https://github.com/yusufakpinar/electronjs') }
       }
     ]
@@ -78,7 +78,7 @@ const createWindow = () => {
 
   // Dock Menu
   const dockMenu = Menu.buildFromTemplate([
-    {label: 'Buraya basma :/', click () { shell.openExternal('http://im.hthayat.com/2015/08/24/1031003_2844e06806cbfac4356058808ee99879_600x600.jpg') }},
+    {label: 'Github', click () { shell.openExternal('http://www.github.com') }},
     {label: 'New Window with Settings',
       submenu: [
         {label: 'Basic'},
